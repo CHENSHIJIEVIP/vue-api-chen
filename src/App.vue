@@ -20,7 +20,7 @@
 export default {
     data(){
         return{
-            routerTransition:''
+            routerTransition:'ddd'
         }
     },
     watch:{
