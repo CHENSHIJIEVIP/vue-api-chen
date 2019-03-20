@@ -6,12 +6,17 @@
     <button @click="handleClick('push')">跳转到某页面</button>
     <button @click="handleClick('replace')">替换到某页面</button><br>
     <b>{{food}}</b>
+    <div class="ajaxButton">
+        <button @click="handleClickAjax">请求数据</button>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+
+import { getUser }  from '@/api/user'
 
 export default {
   name: 'home',
@@ -49,7 +54,23 @@ export default {
                 }
             })
         else if(type == 'replace') this.$router.replace({name:'parent'})
+      },
+      handleClickAjax(){
+        //   this.$axios.get('/v2/movie/top250').then(res => {
+        //       console.log(res)
+        //   })
+
+        getUser({id:21}).then(res => {
+            console.log(res)
+        })
       }
   }
+
 }
 </script>
+
+<style lang="less" scoped>
+    ajaxButton{
+        display: inline-block;
+    }
+</style>
