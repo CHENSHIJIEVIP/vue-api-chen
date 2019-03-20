@@ -3,6 +3,8 @@
         <h2>父组件</h2>
         <p>子传父：{{ msg }}</p>
         <a-input v-model="msg" :values="msg"></a-input>
+        <!-- 绑定state的值：{{stateValue}}<a-input :values="stateValue" @input='handleStateValueChange'></a-input> -->  <!-- 通过事件提交 -->
+        绑定state的值：{{stateValue}}<a-input v-model="stateValue"></a-input>   <!-- 设置set、get -->
         <a-show :content='msg'></a-show>
         <p>vuexState：{{ appName }}</p>
         <p>vuexStateUser：{{ userName }}</p>
@@ -20,6 +22,9 @@
         <div class="mutations">
             <button @click="handleClick('save')">动态注册模块</button>
             <p>{{todoList}}</p>
+        </div>
+        <div class="mutations">
+            <button @click="handleClick('action')">异步提交actions</button>
         </div>
     </div>
 </template>
@@ -48,12 +53,21 @@ export default {
         //     'app_name',
         //     'user_name'
         // ])
-        ...mapState({
+        ...mapState({   //组件中计算属性获取仓库中的数据
             appName: state => state.app_name,
             userName: state => state.user.user_name,
             twoName: state => state.two_name,
-            todoList:state => state.todo ? state.todo.todoList : ''
+            todoList: state => state.todo ? state.todo.todoList : '',
+            // stateValue: state => state.state_value
         }),
+        stateValue:{    //设置state属性的set、get,修改和获取属性的值
+            get(){
+                return this.$store.state.state_value
+            },
+            set(val){
+                this.SET_STATE_VALUE(val)
+            }
+        },
         inputValueLastLetter(){     //计算属性
             return this.msg.substr(-3)
         },
@@ -71,7 +85,8 @@ export default {
     methods:{
         ...mapMutations([
             'SET_APP_NAME',
-            'SET_USER_NAME'
+            'SET_USER_NAME',
+            'SET_STATE_VALUE'
         ]),
         ...mapActions([
             'updateAppName'
@@ -84,6 +99,7 @@ export default {
             if(val == 'app'){
                 this.SET_APP_NAME({newAppName:'newAPP_Name'})
             }else if(val == 'user'){
+                // this.$store.state.user.user_name = 'haha'
                 this.SET_USER_NAME({newUserName:'newUser_Name'})
             }else if(val == 'save'){
                 this.$store.registerModule('todo',{     //注册模块['user','todo]
@@ -91,11 +107,13 @@ export default {
                         todoList:'学习模块'
                     }
                 })
+            }else if(val == 'action'){
+                // this.updateAppName()
+                this.$store.dispatch('updateAppName')  //提交actions
             }
-
-            // this.updateAppName()
-            this.$store.dispatch('getAppName')  //提交actions
-
+        },
+        handleStateValueChange(val){    //通过事件commit提交mutation修改state的值
+            this.SET_STATE_VALUE(val)
         }
     }
 
@@ -107,6 +125,10 @@ export default {
         border: 1px solid red;
         p{
             background: rgb(0, 247, 255);
+        }
+        .mutations{
+            display: inline-block;
+            margin: 10px 10px;
         }
     }
 

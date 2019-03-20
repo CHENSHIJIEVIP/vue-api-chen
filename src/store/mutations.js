@@ -5,6 +5,9 @@ const mutations = {
     },
     SET_TWO_NAME(state){
         vue.set(state, 'two_name','admin2')
+    },
+    SET_STATE_VALUE(state,value){
+        state.state_value = value
     }
 }
 

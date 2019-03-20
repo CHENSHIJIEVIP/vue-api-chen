@@ -10,7 +10,7 @@ const actions = {
     //     })
     // }
 
-    async getAppName ({commit}) {
+    async updateAppName ({commit}) {
         const {info:{appName}} = await getAppName()
         commit('SET_APP_NAME', {newAppName:appName})
     }

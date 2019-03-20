@@ -26,7 +26,7 @@ export default {
   },
   beforeRouteEnter(to,from,next){   //组件内路由守卫(正要进入目标组件但没有渲染组件时触发)
       next(vm => {
-        console.log('设置vue实例',vm)
+        // console.log('设置vue实例',vm)
       })
   },
   beforeRouteLeave(to, from ,next){     //组件内路由守卫(即将离开目标组件但没有离开时触发)
