@@ -4,6 +4,11 @@ import router from './router'
 import store from './store/'
 import Bus from './bus'
 
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+
+Vue.use(iView)
+
 // import axios from 'axios'
 
 Vue.config.productionTip = false

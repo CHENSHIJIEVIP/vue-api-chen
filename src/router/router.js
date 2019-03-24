@@ -71,6 +71,19 @@ export default [
         redirect:'/'    //路由重定向
     },
     {
+        path:'/layout',
+        name:'layout',
+        component: () => import('@/views/layout.vue'),
+        redirect: '/layout/layout_page',
+        children:[
+            {
+                path: 'layout_page',
+                name: 'layout_page',
+                component: () => import('@/views/layout-page.vue'),
+            }
+        ]
+    },
+    {
         path:'*',
         component: () => import('@/views/error_404.vue')
     }

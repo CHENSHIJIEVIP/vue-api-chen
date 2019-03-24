@@ -4,15 +4,16 @@
       <router-link :to="{name:'home'}">Home</router-link> |
       <router-link :to="{name:'about'}">About</router-link> |
       <router-link to="/store">store</router-link> |
-      <router-link to="/view">视图</router-link>
+      <router-link to="/view">视图</router-link> |
+      <router-link to="/layout">layout</router-link>
     </div>
     <!-- 命名视图 -->
-    <transition-group :name="routerTransition">
+    <!-- <transition-group :name="routerTransition"> -->
     <!-- <transition-group name="router"> -->
         <router-view key='default'/>
         <router-view key='tel' name='tel'/>
         <router-view key='email' name='email'/>
-    </transition-group>
+    <!-- </transition-group> -->
   </div>
 </template>
 
@@ -37,6 +38,10 @@ export default {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
 }
 
 //页面组件进入时一些效果
@@ -65,8 +70,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+//   text-align: center;
   color: #2c3e50;
+  height: 100%;
+  font-size: 16px;  //全局设置字体大小为16px
 }
 #nav {
   padding: 30px;
