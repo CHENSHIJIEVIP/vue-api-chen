@@ -74,11 +74,11 @@ export default [
         path:'/layout',
         name:'layout',
         component: () => import('@/views/layout.vue'),
-        redirect: '/layout/layout_page',
+        //redirect: '/layout/layout_page',
         children:[
             {
                 path: 'layout_page',
-                name: 'layout_page',
+                name: 'menu1',
                 component: () => import('@/views/layout-page.vue'),
             }
         ]

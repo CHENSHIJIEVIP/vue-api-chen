@@ -17,7 +17,7 @@
             <template v-for="item in list">
                 <re-dropdown @on-select="handleSelect" v-if="item.children" :key="`drop_${item.name}`" :parent="item" icon-color="#fff" :showTitle="false"></re-dropdown>
                 <Tooltip v-else transfer placement="right" :content="item.title" :key="`drop_${item.name}`">
-                    <span @click="handleClick(item.title)" class="drop-menu-span">
+                    <span @click="handleClick(item.name)" class="drop-menu-span">
                         <Icon :type="item.icon" color="#fff" size="20" />
                     </span>
                 </Tooltip>
@@ -49,10 +49,12 @@ export default {
     },
     methods:{
         handleSelect(name){
-            console.log(name)
+            console.log(1,name)
+            this.$router.push({name:name})
         },
         handleClick(val){
-            console.log(val)
+            console.log(2,val)
+            this.$router.push({name:val})
         }
     },
 }

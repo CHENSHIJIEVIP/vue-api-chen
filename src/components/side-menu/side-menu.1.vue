@@ -1,6 +1,6 @@
 <template>
     <div class="side-menu-wrapper">
-        <slot></slot>
+        <slot>vue-iview</slot>
         <Menu width="auto" theme="dark">
             <template v-for="item in list">
                 <!-- 菜单两级渲染 -->

@@ -61,7 +61,7 @@ export default {
         //   })
 
         getUser({id:21}).then(res => {
-            console.log(res)
+            console.log('接口',res)
         })
       }
   }

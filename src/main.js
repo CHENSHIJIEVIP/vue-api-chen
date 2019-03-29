@@ -4,6 +4,8 @@ import router from './router'
 import store from './store/'
 import Bus from './bus'
 
+if (process.env.NODE_ENV !== 'production') require('./mock')    //如果是生产环境就不调用mock
+
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 
